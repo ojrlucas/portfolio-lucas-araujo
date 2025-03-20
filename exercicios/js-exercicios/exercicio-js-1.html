@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas de Araújo Jr - Entra21</title>
+    <meta name="description" content="Portfólio de Lucas de Araújo Júnior, estudante de Java no programa Entra21. Veja meus projetos e habilidades no desenvolvimento em todas as suas vertentes abordadas no decorrer do curso.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="stylesheet" href="../../styles/styles-media.css">
+
+    <style>
+
+        body {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+        }
+
+        main {
+            height: 100vh;
+        }
+        .imc {
+            width: 700px;
+            height: 400px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 40px;
+            margin-top: 250px;
+        }
+
+        input {
+            width: 80%;
+            margin-left: 60px;
+            height: 35px;
+        }
+
+        label, button {
+            width: 80%;
+            margin-left: 60px;
+        }
+
+        button {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            height: 35px;
+        }
+
+        p {
+            margin-left: 60px;
+            width: 80%;
+            color: white;
+            font-weight: bold;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            width: 100%;
+            height: 70px;
+            border-radius: 0px 0px 40px 40px;
+        }
+
+        .magresa {
+            background: linear-gradient(to right, #0051ff, #96daf7);
+        }
+
+        .normal {
+            background: linear-gradient(to right, #1eb500, #6bba70);
+        }
+
+        .sobrepeso {
+            background: linear-gradient(to right, #d0d700, #cdcd7d);
+        }
+
+        .obesidade-1 {
+            background: linear-gradient(to right, #ffbf00, #f7cf96);
+        }
+
+        .obesidade-2 {
+            background: linear-gradient(to right, #ff3c00, #f7b696);
+        }
+
+        .obesidade-3 {
+            background: linear-gradient(to right, #ff0000, #f79696);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main class="container d-flex justify-content-center align-center">
+        <div class="imc d-block">
+            <h1 class="text-center display-6 mt-4 mb-4">Calculadora de IMC</h1>
+            <label for="nome">Informe o seu nome: </label>
+            <input id="nome" type="text" placeholder="Ex: Maria">
+            <label for="altura">Informe a sua altura (cm): </label>
+            <input id="altura" type="text" placeholder="Ex: 165">
+            <label for="peso">Informe o seu peso: </label>
+            <input id="peso" type="text" placeholder="Ex: 65.2">
+            <button onclick="calculadoraIMC()" class="mt-3">Verificar</button>    
+            
+            <div id="resultado">
+                <p id="imc" class="text-center">IMC: 19</p>   
+                <p id="classificacao" class="text-center">Classificação: normal</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function calculadoraIMC() {
+            var nome = document.getElementById('nome').value
+            var altura = document.getElementById('altura').value
+            var peso = document.getElementById('peso').value
+
+            altura = parseFloat(altura)
+            peso = parseFloat(peso)
+
+            altura = altura / 100
+            var imc = peso / (altura * altura)
+
+            var classificacao = null
+            if (imc < 18.44) {
+                classificacao = 'Magresa'
+            } else if (imc > 18.5 && imc < 24.99) {
+                classificacao = 'Normal'
+            } else if (imc > 25 && imc < 29.99) {
+                classificacao = 'Sobrepeso'
+            } else if (imc > 30 && imc < 34.99) {
+                classificacao = 'Obesidade-I'
+            } else if (imc > 35 && imc < 39.99) {
+                classificacao = 'Obesidade-II'
+            } else {
+                classificacao = 'Obesidade-III'
+            }
+
+            var element = document.getElementById('resultado')
+            if (classificacao === 'Magresa') {
+                element.classList.add('magresa');
+
+            } else if (classificacao === 'Normal') {
+                element.classList.add('normal');
+
+            } else if (classificacao === 'Sobrepeso') {
+                element.classList.add('sobrepeso');
+
+            } else if (classificacao === 'Obesidade-I') {
+                element.classList.add('obesidade-1');
+
+            } else if (classificacao === 'Obesidade-II') {
+                element.classList.add('obesidade-2');
+            } else {
+                element.classList.add('obesidade-3');
+            }
+
+            document.getElementById('imc').innerHTML = 'Olá, ' + nome + '! O seu IMC é de: ' + imc.toFixed(2) + '.'
+            document.getElementById('classificacao').innerHTML = 'Com isso, a sua classificação é de: ' + classificacao + '.'
+            resultadoDiv.classList.remove("magresa", "normal", "sobrepeso", "obesidade-1", "obesidade-2", "obesidade-3");
+
+        }
+
+    </script>
+</body>
+
+</html>
