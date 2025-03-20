@@ -219,6 +219,30 @@ main {
     max-height: 3em; 
 }
 
+.main-container-exercicios {
+    height: 100vh;      
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-exercicio {
+    width: 100%;
+    height: 100%;
+    margin: 20px;
+}
+.row {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    height: 50%; 
+}
+
 /*rodapé*/
 footer {
     height: 70px;
