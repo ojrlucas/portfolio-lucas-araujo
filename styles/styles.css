@@ -1,0 +1,211 @@
+*, .container-fluid {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: #c6c6e1;
+}
+
+ul {
+    list-style: none;
+}
+
+.bg-portfolio {
+    background: linear-gradient(to right, #88eaee, #3645a8);
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#menu-superior {
+    position: fixed;
+    width: 100%;
+    height: 210px;
+}
+
+#menu-lateral {
+    display: none;
+}
+
+#rodape {
+    width: 100%;
+    height: 70px;
+    margin-bottom: -5px;
+    position: relative;
+}
+
+/*menu superior*/
+.nav-superior {  
+    height: 70px;
+}
+
+.logo-superior {
+    width: 20%;
+}
+
+.logo-superior img {
+    width: 110px;
+}
+
+.nav-links-superior i {
+    color: white;
+    font-size: 30px;
+}
+
+#lista-links-superior {
+    display: none;
+    position: absolute;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: rgb(106, 168, 207);
+    width: 100%;
+    height: auto;
+    top: 70px;
+    left: 0px;
+}
+
+#lista-links-superior li, #lista-links-superior a {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#lista-links-superior i {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+/*menu lateral*/
+.nav-lateral {
+    width: 280px;
+    height: 100vh;
+}
+
+.logo-lateral {
+    width: 280px;
+}
+
+.logo-lateral img {
+    width: 200px;
+    margin-top: 20px;
+}
+
+.nav-links-lateral {
+    margin-top: 25px;
+}
+
+#lista-links-lateral a {
+    display: inline-flex;
+    height: 40px;
+    width: 280px;
+    margin-left: -32px;
+    font-weight: bold;
+    color: white;
+    
+}
+
+#lista-links-lateral i {
+    margin: 0px 15px 0px 45px;
+}
+
+#lista-links-lateral a:hover {
+    background: linear-gradient(to right, #3645a865, #88ebee68);
+}
+
+.fundo-nav-lateral {
+    position: absolute;
+    bottom: 0;
+}
+
+/*Conteúdo*/
+main {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    flex: 1;
+}
+
+.titulo {
+    width: 100%;
+    height: 350px;
+    background-color: #88eaee;
+}
+
+.display-6 {
+    font-size: 30px;
+}
+
+.container-projetos-pessoais, .container-javascript {
+    width: 100%;
+}
+
+.projetos-pessoais {
+    width: 85%;
+    height: 375px;
+    margin: 30px auto 40px auto;
+    background-color: rgb(173, 173, 202);
+    border-radius: 30px;
+
+}
+
+.projetos-pessoais img {
+    width: 500px !important;
+    border-radius: 30px 0pc 0pc 30px;
+}
+
+.projetos-imagens {
+    width: 500px;
+    height: 500px;
+}
+
+.projetos-descricoes {
+    width: auto;
+    padding: 40px;
+}
+
+.projetos-descricoes h3 {
+    font-size: 20px;
+}
+
+.projetos-links {
+    margin-top: 60px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #6b74ad;
+}
+
+.projetos-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.projetos-links:hover {
+    background-color: #6bacad; 
+}
+
+.javascript {
+    background-color: #c6c6e1;
+}
+
+.javascript h2 {
+    padding: 30px;
+}
+
+.exercicio-javascript {
+    width: 500px;
+    height: 400px;
+    margin: 30px 0px 30px 0px;
+    border-radius: 30px;
+    background-color: rgb(173, 173, 202);
+}
+
+/*rodapé*/
+footer {
+    height: 70px;
+    color: white;
+}
