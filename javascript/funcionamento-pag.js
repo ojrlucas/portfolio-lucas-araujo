@@ -5,7 +5,7 @@ function navLinksSuperior() {
     const abreListaLinks = document.getElementById('lista-links-superior')
     
     if (clicks) {
-        abreListaLinks.style.display = 'flex'
+        abreListaLinks.style.display = 'grid'
 
     } else {
         abreListaLinks.style.display = 'none'

@@ -13,18 +13,18 @@
     <style>
 
         body {
-            background: linear-gradient(to right, #4facfe, #00f2fe);
+            background: linear-gradient(to right, #908fc7, #002ffe);
         }
 
         main {
             height: 100vh;
         }
+
         .imc {
             width: 700px;
             height: 400px;
             background-color: rgb(255, 255, 255);
             border-radius: 40px;
-            margin-top: 250px;
         }
 
         input {
@@ -39,7 +39,7 @@
         }
 
         button {
-            background: linear-gradient(to right, #4facfe, #00f2fe);
+            background: linear-gradient(to right, #7978c9, #002ffe);
             color: white;
             height: 35px;
         }
@@ -47,15 +47,23 @@
         p {
             margin-left: 60px;
             width: 80%;
-            color: white;
             font-weight: bold;
         }
 
-        #resultado {
+        .imc-container {
             margin-top: 20px;
             width: 100%;
             height: 70px;
             border-radius: 0px 0px 40px 40px;
+            background-color: #cacbcc;
+        }
+
+        .imc-container p {
+            padding: 3px;
+        }
+
+        #classificacao {
+            margin-top: -15px;
         }
 
         .magresa {
@@ -85,9 +93,9 @@
 
 </head>
 
-<body>
+<body id="resultado">
 
-    <main class="container d-flex justify-content-center align-center">
+    <main class="container d-flex justify-content-center align-items-center">
         <div class="imc d-block">
             <h1 class="text-center display-6 mt-4 mb-4">Calculadora de IMC</h1>
             <label for="nome">Informe o seu nome: </label>
@@ -98,9 +106,9 @@
             <input id="peso" type="text" placeholder="Ex: 65.2">
             <button onclick="calculadoraIMC()" class="mt-3">Verificar</button>    
             
-            <div id="resultado">
-                <p id="imc" class="text-center">IMC: 19</p>   
-                <p id="classificacao" class="text-center">Classificação: normal</p>
+            <div class="imc-container">
+                <p id="imc" class="text-center"></p>   
+                <p id="classificacao" class="text-center"></p>
             </div>
         </div>
     </main>
@@ -118,42 +126,36 @@
             var imc = peso / (altura * altura)
 
             var classificacao = null
+            var element = document.getElementById('resultado')
             if (imc < 18.44) {
                 classificacao = 'Magresa'
+                element.setAttribute('class', 'magresa')
+
             } else if (imc > 18.5 && imc < 24.99) {
                 classificacao = 'Normal'
+                element.setAttribute('class', 'normal')
+
             } else if (imc > 25 && imc < 29.99) {
                 classificacao = 'Sobrepeso'
+                element.setAttribute('class', 'sobrepeso')
+
             } else if (imc > 30 && imc < 34.99) {
                 classificacao = 'Obesidade-I'
+                element.setAttribute('class', 'obesidade-1')
+
             } else if (imc > 35 && imc < 39.99) {
                 classificacao = 'Obesidade-II'
+                element.setAttribute('class', 'obesidade-2')
+
             } else {
                 classificacao = 'Obesidade-III'
+                element.setAttribute('class', 'obesidade-3')
+
             }
 
-            var element = document.getElementById('resultado')
-            if (classificacao === 'Magresa') {
-                element.classList.add('magresa');
-
-            } else if (classificacao === 'Normal') {
-                element.classList.add('normal');
-
-            } else if (classificacao === 'Sobrepeso') {
-                element.classList.add('sobrepeso');
-
-            } else if (classificacao === 'Obesidade-I') {
-                element.classList.add('obesidade-1');
-
-            } else if (classificacao === 'Obesidade-II') {
-                element.classList.add('obesidade-2');
-            } else {
-                element.classList.add('obesidade-3');
-            }
-
-            document.getElementById('imc').innerHTML = 'Olá, ' + nome + '! O seu IMC é de: ' + imc.toFixed(2) + '.'
-            document.getElementById('classificacao').innerHTML = 'Com isso, a sua classificação é de: ' + classificacao + '.'
-            resultadoDiv.classList.remove("magresa", "normal", "sobrepeso", "obesidade-1", "obesidade-2", "obesidade-3");
+            document.getElementById('imc').innerHTML = 'Olá, ' + nome + '! O seu IMC é: ' + imc.toFixed(2)
+            document.getElementById('classificacao').innerHTML = 'Com isso, a sua classificação é: ' + classificacao
+            resultadoDiv.classList.remove("magresa", "normal", "sobrepeso", "obesidade-1", "obesidade-2", "obesidade-3")
 
         }
 
