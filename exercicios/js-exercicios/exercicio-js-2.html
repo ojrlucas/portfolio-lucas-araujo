@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas de Araújo Jr - Entra21</title>
+    <meta name="description" content="Portfólio de Lucas de Araújo Júnior, estudante de Java no programa Entra21. Veja meus projetos e habilidades no desenvolvimento em todas as suas vertentes abordadas no decorrer do curso.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">]
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="stylesheet" href="../../styles/styles-media.css">
+
+    <style>
+
+        body {
+            background: linear-gradient(to right, #0051ff, #96daf7);
+            overflow: hidden;
+        }
+
+        main {
+            height: 100vh;
+        }
+
+        .calculadora {
+            width: 395px;
+            height: 502px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 20px;
+            border: 2px solid black;
+            background: linear-gradient(to bottom, #dda201, #f1da73);
+        }
+
+        button {
+            width: 90px;
+            border-radius: 5px;
+            height: 60px;
+            margin-bottom: 6px;
+            border: 1px solid black;
+            background-color: rgb(241, 229, 186);
+            box-shadow: 0px 2px 0px rgb(187, 187, 187);
+        }
+
+        .numeros-e-opradores, .exclusao {
+            margin-left: 9px;
+        }
+
+        .visor-area {
+            margin-right: 10px;
+            border: 2px solid black;
+            background: #fff url('../../imagens/bc-visor.png') repeat;
+            margin-left: 9px;
+            margin-bottom: 12px;
+        }
+
+        .visor-area p {
+            font-size: 40px;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .color {
+            color: #f1da73;
+        }
+
+        .calculadora-titulo h1, .calculadora-titulo i {
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main class="container d-flex justify-content-center align-items-center">
+        <div class="calculadora d-block">
+            <section class="calculadora-titulo d-flex ms-4">
+                <h1 class="text-center display-6 mt-4 mb-4">
+                    <i class="bi bi-calculator"></i> Calculadora
+                </h1>
+            </section>
+        
+            <section class="d-flex justify-content-end visor-area">
+                <p id="visor">0</p>
+            </section>
+
+            <section class="exclusao">
+                <button onclick="excluirNumero('todos')">CE</button>
+                <button onclick="excluirNumero('todos')">C</button>
+                <button onclick="excluirNumero('um')">
+                    <i class="bi bi-backspace"></i>
+                </button>
+                <button onclick="realizarCalculo('', '/')">/</button>
+            </section>
+
+            <section class="numeros-e-opradores">
+                <button onclick="realizarCalculo('7', '')">7</button>
+                <button onclick="realizarCalculo('8', '')">8</button>
+                <button onclick="realizarCalculo('9', '')">9</button>
+                <button onclick="realizarCalculo('', 'x')">x</button>
+                <button onclick="realizarCalculo('4', '')">4</button>
+                <button onclick="realizarCalculo('5', '')">5</button>
+                <button onclick="realizarCalculo('6', '')">6</button>
+                <button onclick="realizarCalculo('', '+')">+</button>
+                <button onclick="realizarCalculo('1', '')">1</button>
+                <button onclick="realizarCalculo('2', '')">2</button>
+                <button onclick="realizarCalculo('3', '')">3</button>
+                <button onclick="realizarCalculo('', '-')">-</button>
+                <button class="color">'</button>
+                <button onclick="realizarCalculo('0', '')">0</button>
+                <button onclick="inserirVirgula()">,</button>
+                <button onclick="realizarCalculo('', '', '=')">=</button>                
+            </section>
+        </div>
+    </main>
+
+    <script>
+        var num1 = ''
+        var num2 = ''
+        var operador = ''
+        var resultado = ''
+
+        function realizarCalculo(numeroSelecionado, operadorSelecionado, acao) { 
+            operador = (operadorSelecionado != '') ? operadorSelecionado : operador
+            var acaoVirgula = (acao === ',') ? acao : ''
+
+            if (numeroSelecionado != '' && operador === '') {
+                num1 = num1 + numeroSelecionado 
+                document.getElementById('visor').innerHTML = num1
+
+            } else if (numeroSelecionado != '' && operador != '') {
+                num2 = num2 + numeroSelecionado
+                document.getElementById('visor').innerHTML = num1 + ' ' + operador + ' ' + num2
+            }
+
+            if (acao === '=') {
+                num1 = parseFloat(num1)
+                num2 = parseFloat(num2)
+
+                switch (operador) {
+                    case '/': 
+                        resultado = num1 / num2
+                        break
+                    case 'x': 
+                        resultado = num1 * num2 
+                        break
+                    case '+': 
+                        resultado = num1 + num2
+                        break
+                    case '-':
+                            resultado = num1 - num2 
+                            break
+                    default: 
+                        resultado = 'Erro';
+                }
+
+                document.getElementById('visor').innerHTML = num1 + ' ' + operador + ' ' + num2 + ' = ' + resultado.toFixed(2)
+                operador = ''
+                num1 = ''
+                num2 = ''
+            }
+        
+        }
+
+        function excluirNumero(acao) {
+            num1 = (acao === 'um' && operador === '') ? num1.slice(0, -1) : num1
+            num2 = (acao === 'um' && operador != '') ? num2.slice(0, -1) : num2
+
+            if (acao === 'todos') {
+                document.getElementById('visor').innerHTML = '0'
+                num1 = ''
+                num2=''
+
+            } else {
+                document.getElementById('visor').innerHTML = num1 + ' ' + operador + ' ' + num2 
+            }
+        }
+
+        function inserirVirgula() {
+            let numeroAtual = operador === '' ? num1 : num2;
+            if (numeroAtual.indexOf('.') === -1) {
+                numeroAtual += '.';
+                if (operador === '') {
+                    num1 = numeroAtual;
+                    document.getElementById('visor').innerHTML = num1;
+                } else {
+                    num2 = numeroAtual;
+                    document.getElementById('visor').innerHTML = num1 + ' ' + operador + ' ' + num2;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
